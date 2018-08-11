@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- <script>
+            function sendFunction(){
+                var valueRequest = document.getElementById('idLogin').value;
+                $.ajax({
+                    url: 'http://localhost:55468/Service1.svc/GetUserById?userId'+valueRequest,
+                    type: "GET",
+                    //data: JSON.stringify(arrData),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        console.log(data);
+                        //alert(data);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(textStatus);
+                    }
+                });
+
+
+
+                
+                //  var xhr = new XMLHttpRequest();
+                // var myUrl = 'http://localhost:55468/Service1.svc/GetUserById'+valueRequest;
+                // xhr.open('GET', myUrl, true);
+                // xhr.send();
+                // if (xhr.status != 200) {
+                //     alert( "Error status: " + xhr.status + ': ' + xhr.statusText );
+                // } else {
+                //     alert("Result:" + xhr.responseText ); // responseText -- текст ответа.
+                //     document.getElementById('userContainer').innerHTML = xhr.responseText;
+                // }
+            }
+            </script> -->
+
+</head>
+<body>
+    <!-- http://localhost:55468/Service1.svc/IsUserRegistered?login={LOGININPUT}&password={PASSWORDINPUT}-->
+    <form action="http://localhost:53987/Service1.svc/IsUserRegistered" method="GET" >
+        <fieldset title="User Check Registration Title">
+            <legend>User credentials</legend>
+            <label for="idLogin">Login</label>
+            <input type="text" name="login" id="idLogin" placeholder="Here enter login">
+            <label for="idPassword">Password</label>
+            <input type="password" name="password" id="idPassword" placeholder="Here enter password">
+            <input type="submit">
+            <input type="reset">
+        </fieldset>
+    </form>
+
+    <br>
+    <hr>
+    <br>
+    <!--http://localhost:55468/Service1.svc/GetUserById?userId={USERIDVALUE}-->
+    <form action="http://localhost:53987/Service1.svc/GetUserById" method="GET" >
+        <fieldset title="Get User By Id">
+            <legend>User credentials</legend>
+            <label for="idLogin">User ID</label>
+            <input type="text" name="userId" id="idLogin" placeholder="Place user ID here">
+            <input type="submit">
+            <input type="reset">
+            
+        </fieldset>
+    </form> 
+    <button onclick="sendFunction()">Call Async XHR</button>
+
+    <div id="userContainer">
+
+    </div>
+   
+</body>
+</html>
