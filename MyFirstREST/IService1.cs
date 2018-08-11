@@ -14,34 +14,27 @@ namespace MyFirstREST
     {
 
         [OperationContract]
-        string GetData(int value);
+        [WebInvoke(Method = "GET",
+             ResponseFormat = WebMessageFormat.Json,
+             BodyStyle = WebMessageBodyStyle.Wrapped,
+             UriTemplate = "/RegisterUser?login={loginInput}&password={passwordInput}")]
+        string RegisterUser(string loginInput, string passwordInput);
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            UriTemplate = "/IsUserRegistered?login={loginInput}&password={passwordInput}")]
+        bool IsUserRegistered(string loginInput, string passwordInput);
 
-        // TODO: Add your service operations here
-    }
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            UriTemplate = "/GetUserById?userId={userIdValue}")]
+        UserWeb GetUserById(string userIdValue);
 
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        // Use a data contract as illustrated in the sample below to add composite types to service operations.
     }
 }
